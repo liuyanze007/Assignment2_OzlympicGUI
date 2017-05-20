@@ -13,12 +13,17 @@ public abstract class Game {
 	private String GID;
 	private Official offical=null;
 	private List<Athlete> athletes;// participants
+
+	private List<Integer> times;// participants times
+	private List<Integer> points;// participants points
 	
 	public abstract void show();
 	
 	public Game(String GID){
 		this.GID=GID;
 		athletes=new ArrayList<Athlete>();
+		times = new ArrayList<>();
+		points = new ArrayList<>();
 	}
 	
 	public String getGID() {
@@ -52,6 +57,17 @@ public abstract class Game {
 		return athletes;
 	}
 
+	public void run(){
+		for(Athlete a:athletes){
+			a.compete(type);
+		}
+		offical.summarise(athletes);
+		for (int i = 0; i < athletes.size(); i++) {
+			times.add(athletes.get(i).getTime());
+			points.add(athletes.get(i).getPoint());
+		}
+	}
+
 	@Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
@@ -64,10 +80,14 @@ public abstract class Game {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SS");
         sb.append(df.format(new Date()));
         sb.append('\n');
-        for(Athlete a : athletes){
-            sb.append(a.toString());
-            sb.append('\n');
-        }
+		for (int i = 0; i < athletes.size(); i++) {
+			sb.append(athletes.get(i).getID());
+			sb.append(",");
+			sb.append(times.get(i));
+			sb.append(",");
+			sb.append(points.get(i));
+			sb.append("\n");
+		}
         sb.append('\n');
         return sb.toString();
     }
