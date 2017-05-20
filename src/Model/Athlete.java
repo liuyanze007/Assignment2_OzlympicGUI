@@ -6,7 +6,6 @@ public abstract class Athlete implements Comparable<Athlete> {
     protected String name;
     private String age;
     private String state;
-    private int points;
     private int point;
     protected int time;
 
@@ -16,14 +15,18 @@ public abstract class Athlete implements Comparable<Athlete> {
         this.name = name;
         this.age = age;
         this.state = state;
-        this.points = 0;
+        this.point = 0;
         this.time = 0;
         // TODO Auto-generated constructor stub
     }
 
+    public String getInfo(){
+        return ID+","+name+","+age+","+state+","+getClassName();
+    }
+
     @Override
     public String toString() {
-        return ID + ", " + time + ", " + points;
+        return ID + ", " + time + ", " + point;
     }
 
     public String getID() {
@@ -36,6 +39,10 @@ public abstract class Athlete implements Comparable<Athlete> {
 
     public String getName() {
         return name;
+    }
+
+    public String getClassName(){
+        return "Athlete";
     }
 
     public void setName(String name) {
@@ -59,16 +66,7 @@ public abstract class Athlete implements Comparable<Athlete> {
     }
 
     public void addPoints(int p) {
-        this.points += p;
         point = p;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
     }
 
     public int getTime() {
