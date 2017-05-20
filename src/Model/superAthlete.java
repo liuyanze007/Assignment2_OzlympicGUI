@@ -7,6 +7,11 @@ public class superAthlete extends Athlete implements Swim, Run, Cycle {
         // TODO Auto-generated constructor stub
     }
 
+    @Override
+    public String getClassName(){
+        return "Super";
+    }
+
     public void compete(int type) {
         if (type == 1) {
 
