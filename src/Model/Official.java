@@ -29,7 +29,23 @@ public class Official {
         Athlete.get(2).addPoints(1);
     }
 
+    public String getInfo(){
+        return id+","+name+","+age+","+state+",Official";
+    }
+
     public String getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public String getState() {
+        return state;
     }
 }
