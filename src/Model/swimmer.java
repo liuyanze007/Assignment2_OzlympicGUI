@@ -7,6 +7,11 @@ public class swimmer extends Athlete implements Swim {
         // TODO Auto-generated constructor stub
     }
 
+    @Override
+    public String getClassName(){
+        return "Swimmer";
+    }
+
     public void compete(int type) {
 
         time = (int) (100 + Math.random() * 100);
