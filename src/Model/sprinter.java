@@ -7,6 +7,11 @@ public class sprinter extends Athlete implements Run {
         // TODO Auto-generated constructor stub
     }
 
+    @Override
+    public String getClassName(){
+        return "Sprinter";
+    }
+
     public void compete(int type) {
 
         time = (int) (10 + Math.random() * 10);
