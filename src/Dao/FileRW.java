@@ -14,23 +14,32 @@ public class FileRW {
     private static List<Athlete> athletes;
     private static List<Official> officials;
 
-    public static void writeFile(Game game){
+    private static BufferedWriter writer;
+    private static BufferedReader reader;
 
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(new File("gameResults.txt")))){
-            String line = null;
-            writer.write("cc");
+    static{
+        try {
+            writer = new BufferedWriter(new FileWriter(new File("gameResults.txt"), true));
+            reader = new BufferedReader(new FileReader(new File("participants.txt")));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    public static void writeFile(String result){
+        try{
+            writer.write(result);
             writer.flush();
         }catch(Exception ex){
             ex.printStackTrace();
         }
-
     }
 
-
-    public static void readFile(String fileName) {
+    public static void readFile() {
         readLines = new HashSet<>();
-        try(BufferedReader reader = new BufferedReader(new FileReader(new File("participants.txt")))){
-            String line = null;
+        try{
+            String line;
             while((line = reader.readLine())!=null){
                 String[] args = line.split(",",-1);
                 if(args.length!=5){
@@ -60,6 +69,9 @@ public class FileRW {
         officials = new ArrayList<>();
         for(String line : readLines){
             String[] args = line.split(",");
+            for (int i = 0; i < 5; i++) {
+                args[i] = args[i].trim();
+            }
             switch (args[1]){
                 case "officer":
                     officials.add(new Official(args[0],args[2],args[3],args[4]));
