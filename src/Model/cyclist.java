@@ -7,6 +7,11 @@ public class cyclist extends Athlete implements Cycle {
         // TODO Auto-generated constructor stub
     }
 
+    @Override
+    public String getClassName(){
+        return "Cyclist";
+    }
+
     public void compete(int type) {
 
         time = (int) (500 + Math.random() * 300);
